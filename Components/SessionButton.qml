@@ -46,7 +46,7 @@ Item {
             contentItem: Text {
                 text: model.name
                 font.pointSize: root.font.pointSize * 0.8
-                color: selectSession.highlightedIndex === index ? "#444" : root.palette.highlight
+                color: selectSession.highlightedIndex === index ? root.palette.window : root.palette.highlight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
@@ -99,7 +99,7 @@ Item {
 
             background: Rectangle {
                 radius: config.RoundCorners / 2
-                color: "#444"
+                color: root.palette.window
                 layer.enabled: true
                 layer.effect: DropShadow {
                     transparentBorder: true

@@ -61,7 +61,7 @@ Column {
                     text: model.realName != "" ? model.realName : model.name
                     font.pointSize: root.font.pointSize * 0.8
                     font.capitalization: Font.Capitalize
-                    color: selectUser.highlightedIndex === index ? "#444" : root.palette.highlight
+                    color: selectUser.highlightedIndex === index ? root.palette.window : root.palette.highlight
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
                 }
@@ -107,7 +107,7 @@ Column {
 
                 background: Rectangle {
                     radius: config.RoundCorners / 2
-                    color: "#444"
+                    color: root.palette.window
                     layer.enabled: true
                     layer.effect: DropShadow {
                         transparentBorder: true
@@ -453,7 +453,7 @@ Column {
 
             contentItem: Text {
                 text: parent.text
-                color: "#444"
+                color: root.palette.window
                 font.pointSize: root.font.pointSize
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -478,7 +478,7 @@ Column {
                     }
                     PropertyChanges {
                         target: loginButton.contentItem
-                        color: "#444"
+                        color: root.palette.window
                     }
                 },
                 State {
@@ -492,7 +492,7 @@ Column {
                     PropertyChanges {
                         target: loginButton.contentItem
                         opacity: 1
-                        color: "#444"
+                        color: root.palette.window
                     }
                 },
                 State {
@@ -506,7 +506,7 @@ Column {
                     PropertyChanges {
                         target: loginButton.contentItem
                         opacity: 1
-                        color: "#444"
+                        color: root.palette.window
                     }
                 },
                 State {
@@ -554,8 +554,11 @@ Column {
 
     Connections {
         target: sddm
-        onLoginSucceeded: {}
+        onLoginSucceeded: {
+            password.text = ""
+        }
         onLoginFailed: {
+            password.text = ""
             failed = true
             resetError.running ? resetError.stop() && resetError.start() : resetError.start()
         }
